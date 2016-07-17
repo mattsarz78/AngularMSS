@@ -1,0 +1,3 @@
+﻿#SeasonLinks,#Conference{float:left;display:inline}#SeasonLinks{min-height:250px;}#Conference{width:35%;min-height:380px;}#Main{padding-top:42px}.navbar {box-shadow: 0 1px 1px rgba(0,0,0,.1);}
+@media all and (min-width: 641px) { #SeasonLinks { width: 55%; } } 
+@media only screen and (max-width: 640px){#SeasonLinks{width: 65%;}.DONTPrint a{line-height:13px;}}

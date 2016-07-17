@@ -1,0 +1,33 @@
+﻿<nav class="navbar DONTPrint">
+	<div class="container">
+		<div>
+			<div ng-include src="'Partials/AddThis/AddThis.html'"></div>
+			<div ng-include src="'Partials/Google/GoogleSearchBar.html'"></div>
+		</div>
+		<div style="clear:both; padding-bottom: 5px"></div>
+		<div>
+			<a href="#/">Home</a><br />
+		</div>
+	</div>
+</nav>
+
+<div id="Main">
+	<!--<p>{{pageTitle}}</p>-->
+	<div id="content">
+		<div id="SeasonLinks" class="DONTPrint">
+			<!--@Html.Partial("YearDates")-->
+		</div>
+		<!--@if (Model.IsFootball)
+		{
+		@Html.Partial("ConferenceList/" + Model.ConferenceListBase)
+		}-->
+	</div>
+	<div style="display: inline-block">
+		<p>
+			<span id="Label9">
+				Got a question, complaint, comment or know a game not listed here?
+			</span><a id="HyperLink32" href="mailto:footballsked@gmail.com">Send it here</a>
+		</p>
+	</div>
+</div>
+
