@@ -774,6 +774,9 @@
     <Content Include="Partials\weeklyTextSchedule.html" />
     <Content Include="Partials\contractGameList.html" />
     <Content Include="Partials\home.html" />
+    <Content Include="Partials\YearLists\YearLists1.html" />
+    <Content Include="Scripts\AngularJS\angular-ui-router.js" />
+    <Content Include="Scripts\AngularJS\angular-ui-router.min.js" />
     <Content Include="Scripts\AngularJS\angular-animate.js" />
     <Content Include="Scripts\AngularJS\angular-animate.min.js" />
     <Content Include="Scripts\AngularJS\angular-aria.js" />
@@ -1564,6 +1567,7 @@
     <Content Include="Scripts\Application\Controllers\seasonContents.js" />
     <Content Include="Scripts\Application\cssLoader.js" />
     <Content Include="Scripts\Application\jsTemplates.js" />
+    <Content Include="Scripts\Application\setTitle.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1579,6 +1583,12 @@
     <Content Include="Images\tima_measurement_info" />
     <Content Include="Images\TMAudioSocketClient" />
     <Content Include="Images\TMAudioSocketServer" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

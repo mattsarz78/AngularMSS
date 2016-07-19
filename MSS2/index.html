@@ -2,7 +2,8 @@
 <html ng-app="mattSarzSports" ng-cloak>
 <head>
 	<title ng-bind="title">MattSarzSports.com</title>
-	<meta charset="utf-8" />
+    <!--<title ng-bind="$title + ' - ui-router-title'">MattSarzSports.com</title>-->
+    <meta charset="utf-8" />
 	<meta name="keywords" content="NCAA Football TV, NCAA Basketball TV, Matt Sarzyniak, sports on television" />
 	<meta name="description" content="Since 2005, compiling NCAA Division I football and men's basketball television schedules. Looking for a game?  Check here." />
 	<meta name="author" content="Matt Sarzyniak" />
@@ -114,7 +115,7 @@
 				}
 			</style>
 		</div>
-		<div ng-view></div>
+		<div ui-view></div>
 		<div class="DONTPrint" id="GoogleAd" ng-include src="'Partials/Google/GoogleBottomBanner.html'"></div>
 		<div id="GoogleAnalytics" ng-include src="'Partials/Google/GAJava.html'"></div>
 		<div>
@@ -123,10 +124,11 @@
 	</div>
 
 	<script src="Scripts/AngularJS/angular.min.js"></script>
-	<script src="Scripts/AngularJS/angular-route.min.js"></script>
+	<script src="Scripts/AngularJS/angular-ui-router.min.js"></script>
 	<script src="Scripts/Application/app.js"></script>
 	<script src="Scripts/Application/jsTemplates.js"></script>
 	<script src="Scripts/Application/cssLoader.js"></script>
+    <script src="Scripts/Application/setTitle.js"></script>
 	<script src="Scripts/Application/Controllers/homeController.js"></script>
 	<script src="Scripts/Application/Controllers/seasonContents.js"></script>
 </body>

@@ -1,34 +1,11 @@
-﻿var app = angular.module('mattSarzSports', ['ngRoute', 'ngLoadScript', 'cssLoader']);
-app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-    $routeProvider
-        .when("/", { templateUrl: "partials/home.html", controller: "homeController", title: "MattSarzSports.com", css:"css/home.css"})
-        .when("/Season/Contents/:sportYear", { templateUrl: "partials/seasonContents.html", controller: "seasonContentsController", css:"css/seasonContents.css"})
-        .when("/Schedule/Weekly/:sportYear/:week", { templateUrl: "partials/weeklySchedule.html", controller: "scheduleWeeklyController"})
-        .when("/Schedule/WeeklyText/:sportYear/:week", { templateUrl: "partials/weeklyTextSchedule.html", controller: "scheduleWeeklyTextController"})
-        .when("/Contract/GameList/:conference/:year", { templateUrl: "partials/contractGameList.html", controller: "contractGameListController"})
-        .when("/CopyrightAndDisclaimer", {templateUrl: "partials/copyrightAndDisclaimer.html", controller: "copyrightController", title: "Copyright And Disclaimer"});
-
-}]);
-
-app.run(['$rootScope', function ($rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        switch (current.$$route.controller) {
-            case 'scheduleWeeklyController':
-                $rootScope.title = 'Weekly Schedule: ' + current.params.sportYear + ' Week: ' + current.params.week;
-                break;
-            case 'seasonContentsController':
-                $rootScope.title = 'Season Contents: ' + current.params.sportYear;
-                break;
-            case 'scheduleWeeklyTextController':
-                $rootScope.title = 'Weekly Text Schedule: ' + current.params.sportYear + ' Week: ' + current.params.week;
-                break;
-            case 'contractGameListController':
-                $rootScope.title = 'Contract Game List: ' + current.params.sportYear + ' Week: ' + current.params.week;
-                break;
-            default:
-                $rootScope.title = current.$$route.title;
-        }
-    });
+﻿var app = angular.module('mattSarzSports', ['ui.router', 'ngLoadScript', 'cssLoader', 'ui.router.title']);
+app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $stateProvider.state("/", { url: "/", templateUrl: "partials/home.html", controller: "homeController", title: "MattSarzSports.com", css: "css/home.css" });
+    $stateProvider.state("/Season/Contents/", { url:"/Season/Contents/:sportYear", templateUrl: "partials/seasonContents.html", controller: "seasonContentsController", css: "css/seasonContents.css"});
+    $stateProvider.state("/Schedule/Weekly/", { url: "/Schedule/Weekly/:sportYear/:week", templateUrl: "partials/weeklySchedule.html", controller: "scheduleWeeklyController" });
+    $stateProvider.state("/Schedule/WeeklyText/", { url: "/Schedule/WeeklyText/:sportYear/:week", templateUrl: "partials/weeklyTextSchedule.html", controller: "scheduleWeeklyTextController" });
+    $stateProvider.state("/Contract/GameList/", { url: "/Contract/GameList/:conference/:year", templateUrl: "partials/contractGameList.html", controller: "contractGameListController" });
+    $stateProvider.state("/CopyrightAndDisclaimer", { url: "/CopyrightAndDisclaimer", templateUrl: "partials/copyrightAndDisclaimer.html", controller: "copyrightController", title: "Copyright And Disclaimer" });
 }]);
 
 app.controller('scheduleWeeklyController', function ($scope, $routeParams) {

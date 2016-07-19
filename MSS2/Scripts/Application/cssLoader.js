@@ -3,32 +3,42 @@
 
     var app = ng.module('cssLoader', []);
 
-    app.directive('body', ['$rootScope', '$compile',
-    function ($rootScope, $compile) {
+    app.directive('body', ['$rootScope', '$compile', '$state',
+    function ($rootScope, $compile, $state) {
         return {
             restrict: 'E',
-            link: function (scope, elem) {
+            link: function ($scope, elem, attrs, ctrls) {
                 var html = '<link rel="stylesheet" ng-repeat="(routeCtrl, cssUrl) in routeStyles" ng-href="{{cssUrl}}" />';
-                elem.append($compile(html)(scope));
-                scope.routeStyles = {};
-                $rootScope.$on('$routeChangeStart', function (e, next, current) {
-                    if (current && current.$$route && current.$$route.css) {
-                        if (!angular.isArray(current.$$route.css)) {
-                            current.$$route.css = [current.$$route.css];
+                var el = $compile(html)($scope)
+                elem.append(el);
+                $scope.routeStyles = {};
+
+                function applyStyles(state, action) {
+                    var sheets = state ? state.css : null;
+                    if (state.parent) {
+                        var parentState = $state.get(state.parent)
+                        applyStyles(parentState, action);
+                    }
+                    if (sheets) {
+                        if (!Array.isArray(sheets)) {
+                            sheets = [sheets];
                         }
-                        angular.forEach(current.$$route.css, function (sheet) {
-                            delete scope.routeStyles[sheet];
+                        angular.forEach(sheets, function (sheet) {
+                            action(sheet);
                         });
                     }
-                    if (next && next.$$route && next.$$route.css) {
-                        if (!angular.isArray(next.$$route.css)) {
-                            next.$$route.css = [next.$$route.css];
-                        }
-                        angular.forEach(next.$$route.css, function (sheet) {
-                            scope.routeStyles[sheet] = sheet;
-                        });
-                    }
-                });
+                }
+
+                $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+                    applyStyles(fromState, function (sheet) {
+                        delete $scope.routeStyles[sheet];
+                    });
+
+                    applyStyles(toState, function (sheet) {
+                        $scope.routeStyles[sheet] = sheet;
+                    });
+                })
             }
         };
     }
